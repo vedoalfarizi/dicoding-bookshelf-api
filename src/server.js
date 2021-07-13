@@ -1,6 +1,7 @@
 const Hapi = require('@hapi/hapi');
 
 const config = require('./helpers/config');
+const logger = require('./helpers/utils/logger');
 const routes = require('./routes');
 
 const init = async () => {
@@ -17,8 +18,7 @@ const init = async () => {
   server.route(routes);
 
   await server.start();
-  // eslint-disable-next-line no-console
-  console.log(`Server running on ${server.info.uri}`);
+  logger('server', `Server running on ${server.info.uri}`, 'info');
 };
 
 init();
